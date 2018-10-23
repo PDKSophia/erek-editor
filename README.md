@@ -46,10 +46,11 @@ html
   <template>
     <div>
       <erek-editor
-        :width=width
-        :height=height
-        :defaultText=text
-        >
+        :width='width'
+        :height='height'
+        :defaultText='text'
+        :theme='theme'  
+      >
       </erek-editor>
     </div>
   </template>
@@ -68,7 +69,8 @@ js
       return {
         width: '1000px',
         height: '520px',
-        text: text
+        text: text,
+        theme: 'default'
       }
     }
   }
