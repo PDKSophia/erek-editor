@@ -1,6 +1,6 @@
 {
 	"name": "erek-editor",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Erek Editor - 可爱又简单的富文本编辑器",
 	"private": false,
 	"main": "./dist/erek_editor.min.js",

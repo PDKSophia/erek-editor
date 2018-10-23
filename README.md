@@ -81,3 +81,4 @@ props | type | default | description
 width | String | 900px | erek editor width
 height | String | 500px | erek editor height
 text | String |  | defalut Text
+theme | String | default | default、green、gray、dark、princess |

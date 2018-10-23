@@ -4,10 +4,18 @@
       <h1>Erek Editor - 可爱又简单的富文本编辑器</h1>
       <h3>Cute and Simple rich text editor，Support MarkDown format ...</h3>
     </header>
+    <div class='themes' @click='selectTheme'>
+      <span data-theme='default' style='width:30px;height:30px'></span>
+      <span data-theme='dark'></span>
+      <span data-theme='green'></span>
+      <span data-theme='gray'></span>
+      <span data-theme='princess'></span>
+    </div>
     <erek-editor
-      :width=width
-      :height=height
-      :defaultText=text
+      :width='width'
+      :height='height'
+      :defaultText='text'
+      :theme='theme'
     >
     </erek-editor>
     <footer>
@@ -18,7 +26,8 @@
 </template>
 <script>
 import ErekEditor from './components/erek-editor.vue'
-import text from './defaultText/text'
+import text from './lib/text'
+import theme from './lib/theme'
 export default {
   name: 'App',
   components: {
@@ -27,8 +36,24 @@ export default {
   data () {
     return {
       width: '1000px',
-      height: '520px',
-      text: text
+      height: '460px',
+      text: text,
+      theme: 'default'
+    }
+  },
+  methods: {
+    selectTheme (event) {
+      if (event.target.tagName.toLowerCase() === 'span') {
+        let theme = event.target.dataset.theme
+        let spans = event.target.parentNode.querySelectorAll('span')
+        for (let i = 0; i < spans.length; i++) {
+          spans[i].style = '' // 把所有样式为空
+        }
+        this.theme = theme
+        event.target.style.height = '30px'
+        event.target.style.width = '30px'
+      }
+      // console.log(this.theme)
     }
   }
 }
@@ -66,6 +91,42 @@ footer {
 a{
   text-decoration: none;
   color: rgb(241, 26, 26);
+}
+.themes{
+  margin-top: 30px;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  span{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: red;
+    border-radius: 50%;
+    margin: 0 6px;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    color: white;
+    &:nth-child(1){
+      background-color: #35495e;
+    }
+    &:nth-child(2){
+      background-color: #232323;
+    }
+    &:nth-child(3){
+      background-color: #41b883;
+    }
+    &:nth-child(4){
+      background-color: #fafbfc;
+    }
+    &:nth-child(5){
+      background-color: #27292c;
+    }
+    &:nth-child(5){
+      background-color: #f05959;
+    }
+  }
 }
 </style>
 

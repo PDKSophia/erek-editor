@@ -1,16 +1,21 @@
 <template>
-  <div class='erek-editor' :style='{width: width, height: height}'>
-    <erek-menu></erek-menu>
+  <div class='erek-editor' :style='{width: width}'>
+    <erek-menu
+      :bgMenu="selectTheme.bgMenu" 
+      :menuBorder="selectTheme.menuBorder"
+      :menuColor="selectTheme.menuColor"
+      :hoverColor="selectTheme.hoverColor"
+    ></erek-menu>
     <div class='content'>
-      <div class='erek-editor-edit' style='backgroundColor: #eceae8' :style='{height: height}'>
+      <div class='erek-editor-edit' :style='{height: height, backgroundColor: selectTheme.bgLeft}'>
         <textarea
           class='erek-editor-textarea'
           placeholder="say something ..."
           v-model='markdString'
-          :style='{height: height}'
+          :style='{height: height, backgroundColor: selectTheme.bgLeft}'
         ></textarea>
       </div>
-      <div class='erek-editor-html' style='backgroundColor: #f5f5f5' v-html='htmlString' :style='{height: height}'>
+      <div class='erek-editor-html' v-html='htmlString' :style='{height: height, backgroundColor: selectTheme.bgRight}'>
       </div>
     </div>
   </div>
@@ -18,6 +23,7 @@
 <script>
 import ErekMenu from './erek-editor-menu.vue'
 import marked from 'marked'
+import theme from '../lib/theme'
 export default {
   name: 'ErekEditor',
   components: {
@@ -30,17 +36,30 @@ export default {
     },
     height: {
       type: String,
-      default: '500px'
+      default: '480px'
     },
     defaultText:{
       type: String,
       default: ''
+    },
+    theme: {
+      type: Object,
+      default: 'default' 
     }
   },
   data () {
     return {
       markdString: '',
       htmlString: ''
+    }
+  },
+  computed: {
+    selectTheme () { // 主题的改变
+      if (theme.hasOwnProperty(this.theme)) {
+        return theme[this.theme]
+      } else {
+        return theme.default
+      }
     }
   },
   watch: {
@@ -86,6 +105,7 @@ export default {
     border-top: none;
 
     > .erek-editor-edit {
+      padding: 15px 0 15px 10px;
       width: 50%;
       overflow: auto;
       word-wrap: break-word;
@@ -96,18 +116,17 @@ export default {
         font-size: 13px;
         resize:none;
         padding: 15px;
-        line-height: 30px;
         outline:none;
-        background: #eceae8
+        line-height: 20px;
       }
     }
 
     > .erek-editor-html {
+      padding: 15px 0 15px 15px;
       overflow-y:scroll;
       width: 50%;
-      padding: 15px;
       font-size: 13px;
-      line-height: 30px;
+      line-height: 26px;
     }
   }
 }
