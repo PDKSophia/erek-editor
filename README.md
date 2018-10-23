@@ -14,7 +14,7 @@
 
 ## Demo
 
-<img src='./logo.png'>
+<img src='./logos.png'>
 
 --------
 
