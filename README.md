@@ -11,9 +11,14 @@
 
 <img src='./logo.png'>
 
-## [Link](http://www.pengdaokuan.cn/ErekEditor)
-
 --------
+
+## Display
+
+Demo Link: http://www.pengdaokuan.cn/ErekEditor
+
+---------
+
 ## Usage
 ### 1.1 Installation
 ```javascript
