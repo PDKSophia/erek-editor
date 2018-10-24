@@ -5,11 +5,12 @@
       <h3>Cute and Simple rich text editor，Support MarkDown format ...</h3>
     </header>
     <div class='themes' @click='selectTheme'>
-      <span data-theme='default' style='width:30px;height:30px'></span>
+      <span data-theme='default' style='width:29px;height:29px'></span>
       <span data-theme='dark'></span>
       <span data-theme='green'></span>
       <span data-theme='gray'></span>
       <span data-theme='princess'></span>
+      <span data-theme='purple'></span>
     </div>
     <erek-editor
       :width='width'
@@ -50,8 +51,8 @@ export default {
           spans[i].style = '' // 把所有样式为空
         }
         this.theme = theme
-        event.target.style.height = '30px'
-        event.target.style.width = '30px'
+        event.target.style.height = '29px'
+        event.target.style.width = '29px'
       }
       // console.log(this.theme)
     }
@@ -121,10 +122,10 @@ a{
       background-color: #fafbfc;
     }
     &:nth-child(5){
-      background-color: #27292c;
-    }
-    &:nth-child(5){
       background-color: #f05959;
+    }
+    &:nth-child(6){
+      background-color: #6659bf;
     }
   }
 }

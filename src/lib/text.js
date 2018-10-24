@@ -12,9 +12,6 @@ export default {
     ErekEditor
   },
   methods: {
-  	showHtml (data) {
-      console.log(data)
-    }
   },
   data () {
     return {

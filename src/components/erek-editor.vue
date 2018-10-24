@@ -5,6 +5,7 @@
       :menuBorder="selectTheme.menuBorder"
       :menuColor="selectTheme.menuColor"
       :hoverColor="selectTheme.hoverColor"
+      @textContentChange='updateMarkdownString'
     ></erek-menu>
     <div class='content'>
       <div class='erek-editor-edit' :style='{height: height, backgroundColor: selectTheme.bgLeft}'>
@@ -75,15 +76,97 @@ export default {
         smartypants: false
       })
       this.htmlString = marked(value)
+
+      setTimeout(() => {
+        this.parseHtml()
+      })
+    }
+  },
+  methods: {
+    handleLayoutControl () {
+      let erekLayout = document.querySelector('.erek-editor-layout')
+    },
+    updateMarkdownString (data) {
+      this.markdString = data
+    },
+    parseHtml () {
+      let style = {
+        ul: `
+              margin: 10px 20px;
+              list-style-type: square;
+              padding: 0;
+            `,
+        ol: `
+              margin: 10px 20px;
+              list-style-type: decimal;
+              padding: 0;
+            `,
+        li: `
+              display: list-item;
+              padding: 0;
+            `,
+        hr: `
+              margin: 15px 0;
+              border-top: 1px solid #eeeff1;
+            `,
+        pre: `
+              display: block;
+              margin: 10px 0;
+              padding: 8px;
+              border-radius: 4px;
+              background-color: #f2f2f2;
+              color: #656565;
+              font-size: 14px;
+             `,
+        blockquote: `
+              display: block;
+              border-left: 4px solid #ddd;
+              margin: 15px 0;
+              padding: 0 15px;
+            `,
+        img: `
+               margin: 20px 0;
+             `,
+        a: `
+            color: #41b883;
+           `,
+        table: `
+            border: 1px solid #eee;
+            border-collapse: collapse;
+          `,
+        tr: `
+            border: 1px solid #eee;
+          `,
+        th: `
+            padding: 8px 30px;
+            border-right: 1px solid #eee;
+            background-color: #f2f2f2;
+          `,
+        td: `
+            padding: 8px 30px;
+            border-right: 1px solid #eee;
+          `
+      }
+      let html = document.getElementsByClassName('erek-editor-html')[0]
+      let tagNames = Object.keys(style)
+      for (let i = 0; i < tagNames.length; i++) {
+        let _tagNames = html.getElementsByTagName(tagNames[i])
+        if (_tagNames.length > 0) {
+          for (let j = 0; j < _tagNames.length; j++) {
+            _tagNames[j].style.cssText = style[tagNames[i]]
+          }
+        }
+      }
     }
   },
   mounted() {
     this.markdString = this.defaultText
+    this.handleLayoutControl()
   },
 }
 </script>
 
-<style scoped lang='less'>
+<style lang='less'>
 .erek-editor {
   background-color: white;
   border-radius: 4px;
@@ -105,7 +188,7 @@ export default {
     border-top: none;
 
     > .erek-editor-edit {
-      padding: 15px 0 15px 10px;
+      padding: 15px 15px 15px 10px;
       width: 50%;
       overflow: auto;
       word-wrap: break-word;
@@ -122,11 +205,78 @@ export default {
     }
 
     > .erek-editor-html {
-      padding: 15px 0 15px 15px;
+      padding: 15px 15px 15px 15px;
       overflow-y:scroll;
       width: 50%;
       font-size: 13px;
       line-height: 26px;
+
+      ul {
+        margin: 10px 20px;
+        list-style-type: square;
+        padding: 0;
+      }
+
+      ol {
+        margin: 10px 20px;
+        list-style-type: decimal;
+        padding: 0;
+      }
+
+      li {
+        display: list-item;
+        padding: 0;
+      }
+
+      hr {
+        margin: 15px 0;
+        border-top: 1px solid #eeeff1;
+      }
+
+      pre {
+        display: block;
+        margin: 10px 0;
+        padding: 8px;
+        border-radius: 4px;
+        background-color: #f2f2f2;
+        color: #656565;
+        font-size: 14px;
+      }
+
+      blockquote {
+        display: block;
+        border-left: 4px solid #ddd;
+        margin: 15px 0;
+        padding: 0 15px;
+      }
+
+      img {
+        margin: 20px 0;
+      }
+
+      a {
+        color: #41b883;
+      }
+      
+      table {
+        border: 1px solid #eee;
+        border-collapse: collapse;
+      }
+
+      tr {
+        border: 1px solid #eee;
+      }
+
+      th {
+        padding: 8px 30px;
+        border-right: 1px solid #eee;
+        background: #f2f2f2;
+      }
+      
+      td {
+        padding: 8px 30px;
+        border-right: 1px solid #eee;
+      }
     }
   }
 }

@@ -10,7 +10,7 @@ const theme = {
   green: {
     menuColor: '#ffffff',
     menuBorder: '1px solid #41b883',
-    hoverColor: '#5affb6',
+    hoverColor: '#41b883',
     bgMenu: '#41b883',
     bgLeft: '#f0fff8',
     bgRight: '#ffffff'
@@ -26,7 +26,7 @@ const theme = {
   dark: {
     menuColor: '#aaa',
     menuBorder: '1px solid #27292c',
-    hoverColor: '#09bb07',
+    hoverColor: '#27292c',
     bgMenu: '#27292c',
     bgLeft: '#edeae8',
     bgRight: '#f5f5f5'
@@ -37,6 +37,14 @@ const theme = {
     hoverColor: '#ffc2c2',
     bgMenu: '#f05959',
     bgLeft: '#fff8f8',
+    bgRight: '#ffffff'
+  },
+  purple: {
+    menuColor: '#ffffff',
+    menuBorder: '1px solid #6659bf',
+    hoverColor: '#6659bf',
+    bgMenu: '#6659bf',
+    bgLeft: '#f4f3f9',
     bgRight: '#ffffff'
   }
 }
