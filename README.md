@@ -3,6 +3,10 @@
 ![](https://img.shields.io/badge/vue-2.5.2-blue.svg)
 ![](https://img.shields.io/badge/license-MIT-orange.svg)
 
+## npm address
+
+npm address in here : https://www.npmjs.com/package/erek-editor
+
 ## Introduce
 1 . Cute and Simple rich text editor
 
@@ -17,12 +21,6 @@
 <img src='./logo_1.png'>
 
 <img src='./logo_2.png'>
-
---------
-
-## Display
-
-Demo Link: http://www.pengdaokuan.cn/ErekEditor
 
 ---------
 
